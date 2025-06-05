@@ -5,14 +5,16 @@ import matplotlib.pyplot as plt
 from fastapi import FastAPI, File, UploadFile
 from fastapi.responses import HTMLResponse, FileResponse
 from pydantic import BaseModel
-import uvicorn
+from fastapi.templating import Jinja2Templates
+from fastapi.requests import Request
 
 app = FastAPI()
 
+templates = Jinja2Templates(directory="templates")
+
 @app.get("/", response_class=HTMLResponse)
-def index():
-    with open("templates/index.html", "r") as f:
-        return f.read()
+def index(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 UPLOAD_DIR = "./uploads"
 os.makedirs(UPLOAD_DIR, exist_ok=True)
