@@ -1,135 +1,111 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>📊 Data Insight Generator</title>
   <style>
     body {
-      font-family: "Segoe UI", sans-serif;
-      background: #f8f9fa;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f5f8fa;
+      color: #333;
       padding: 30px;
-      max-width: 700px;
+      max-width: 800px;
       margin: auto;
     }
 
-    h1 {
-      color: #333;
-      text-align: center;
+    h1, h2 {
+      color: #1f4e79;
     }
 
-    .container {
-      background: white;
-      padding: 25px;
-      border-radius: 8px;
-      box-shadow: 0 0 10px #ddd;
-    }
-
-    label {
-      display: block;
-      margin-top: 20px;
-      font-weight: bold;
+    form, .query-section {
+      background-color: #ffffff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      margin-bottom: 30px;
     }
 
     input[type="file"],
-    input[type="text"],
-    button {
+    input[type="text"] {
       width: 100%;
       padding: 10px;
-      margin-top: 8px;
-      border-radius: 5px;
+      margin-top: 10px;
+      font-size: 16px;
       border: 1px solid #ccc;
+      border-radius: 6px;
     }
 
     button {
-      background-color: #007bff;
+      background-color: #1f4e79;
       color: white;
-      font-weight: bold;
       border: none;
-      margin-top: 20px;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
       cursor: pointer;
+      margin-top: 15px;
     }
 
     button:hover {
-      background-color: #0056b3;
+      background-color: #163a5c;
     }
 
-    #output {
-      margin-top: 30px;
-      background: #f1f1f1;
-      padding: 15px;
-      border-radius: 5px;
-      white-space: pre-wrap;
-      font-family: monospace;
+    #status {
+      margin-top: 15px;
+      color: #2e7d32;
+      font-weight: bold;
+    }
+
+    #plot-img {
+      margin-top: 20px;
+      max-width: 100%;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
     }
   </style>
 </head>
 <body>
-  <h1>📈 Data Insight Generator</h1>
-  <div class="container">
-    <form id="uploadForm">
-      <label for="file">Upload Excel or Text File:</label>
-      <input type="file" id="file" name="file" required />
+  <h1>📁 Upload Your Data File</h1>
+  <form action="/upload" enctype="multipart/form-data" method="post">
+    <input type="file" name="file" required />
+    <button type="submit">📤 Upload File</button>
+  </form>
 
-      <label for="query">Ask your question (e.g. "Show sales vs profit by month"):</label>
-      <input type="text" id="query" name="query" placeholder="Type your query..." required />
-
-      <button type="submit">Submit</button>
-    </form>
-
-    <div id="output"></div>
+  <div class="query-section">
+    <h2>🤖 Ask a Question About Your Data</h2>
+    <input type="text" id="user_query" placeholder="e.g., plot sales vs month" />
+    <button onclick="sendQuery()">🔍 Generate Graph</button>
+    <p id="status"></p>
+    <img id="plot-img" src="" alt="Generated Graph will appear here" />
   </div>
 
   <script>
-    const form = document.getElementById("uploadForm");
-    const output = document.getElementById("output");
-
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      output.innerText = "⏳ Uploading and processing...";
-
-      const fileInput = document.getElementById("file");
-      const queryInput = document.getElementById("query");
-
-      const file = fileInput.files[0];
-      if (!file) {
-        output.innerText = "❗ Please select a file.";
+    async function sendQuery() {
+      const query = document.getElementById("user_query").value.trim();
+      if (!query) {
+        document.getElementById("status").innerText = "❗ Please enter a query.";
         return;
       }
 
-      // 1. Upload file
-      const formData = new FormData();
-      formData.append("file", file);
+      document.getElementById("status").innerText = "⏳ Generating graph...";
 
-      try {
-        const uploadRes = await fetch("/upload", {
-          method: "POST",
-          body: formData,
-        });
+      const response = await fetch("/generate_graph", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ user_query: query })
+      });
 
-        const uploadResult = await uploadRes.json();
-        if (uploadResult.error) {
-          output.innerText = "❌ Upload Error: " + uploadResult.error;
-          return;
-        }
+      const data = await response.json();
 
-        // 2. Send Query
-        const queryRes = await fetch("/generate_graph", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ user_query: queryInput.value }),
-        });
-
-        const result = await queryRes.json();
-
-        if (result.error) {
-          output.innerText = "⚠️ Error:\n" + result.error + "\n\nCode:\n" + result.code;
-        } else {
-          output.innerText = "✅ Graph generated successfully! Check the server terminal for output.";
-        }
-      } catch (err) {
-        output.innerText = "🔥 Unexpected Error: " + err.message;
+      if (data.message === "Graph generated successfully") {
+        document.getElementById("status").innerText = "✅ Graph generated!";
+        document.getElementById("plot-img").src = "/graph?" + new Date().getTime(); // Bypass cache
+      } else {
+        document.getElementById("status").innerText = "❌ Error: " + data.error;
+        console.error("Traceback:", data.traceback);
       }
-    });
+    }
   </script>
 </body>
 </html>

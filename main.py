@@ -3,10 +3,10 @@ import pandas as pd
 import traceback
 import matplotlib.pyplot as plt
 from fastapi import FastAPI, File, UploadFile
-from fastapi.responses import HTMLResponse
-from pydantic import BaseModel
+from fastapi.responses import HTMLResponse, FileResponse
 from fastapi.templating import Jinja2Templates
 from fastapi.requests import Request
+from pydantic import BaseModel
 import uvicorn
 import google.generativeai as genai
 
@@ -33,15 +33,12 @@ async def upload_file(file: UploadFile = File(...)):
 
     if file_ext in ("xls", "xlsx"):
         df = pd.read_excel(file_path, engine='openpyxl')
-
     elif file_ext == "csv":
         df = pd.read_csv(file_path)
-
     elif file_ext == "txt":
         with open(file_path, "r") as f:
             text = f.read()
         df = extract_structured_data(text)
-
     else:
         return {"error": f"Unsupported file type: {file_ext}. Please upload .csv, .txt, .xlsx, or .xls"}
 
@@ -74,7 +71,7 @@ class Query(BaseModel):
     user_query: str
 
 # === 6. Gemini Code Generation ===
-GEMINI_API_KEY = "AIzaSyBYuVCOkAIB6pIPFPLhlltE75zHHQK_5xY"  # Replace with your actual API
+GEMINI_API_KEY = "AIzaSyBYuVCOkAIB6pIPFPLhlltE75zHHQK_5xY"  # Replace with your actual key
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel("gemini-2.5-flash-preview-04-17")
 
@@ -116,6 +113,14 @@ def generate_graph(query: Query):
         tb = traceback.format_exc()
         return {"error": str(e), "traceback": tb, "code": code}
 
-# # === 8. Run Server ===
+# === 8. Serve the Generated Graph ===
+@app.get("/graph")
+def get_graph():
+    if os.path.exists("graph.png"):
+        return FileResponse("graph.png", media_type="image/png")
+    else:
+        return {"error": "Graph not found. Generate it first."}
+
+# === 9. Run Locally (For local testing only) ===
 # if __name__ == "__main__":
 #     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
