@@ -1,68 +1,70 @@
 # Data Insight Generator
 
-Data Insight Generator is a powerful and user-friendly web application designed to simplify the process of data analysis and visualization. Built with FastAPI and enhanced by Google Gemini’s advanced generative AI, this tool enables users—whether beginners or experts—to upload their structured data files, extract meaningful insights, and create dynamic visualizations effortlessly through natural language queries.
+**Data Insight Generator** is a powerful and user-friendly web application designed to simplify data analysis and visualization. Built with FastAPI and powered by Google Gemini’s cutting-edge generative AI, this tool empowers users—from beginners to experts—to effortlessly upload structured data files, extract meaningful insights, and create dynamic visualizations using natural language commands.
 
 ---
 
-## Description
+## 🚀 Description
 
-Analyzing data and generating insightful visualizations often requires coding expertise and manual effort. Data Insight Generator bridges this gap by combining robust backend data processing with cutting-edge AI-driven code generation. Users can upload files in popular formats like CSV, Excel, and structured TXT, which the system parses and converts into clean, analyzable datasets. By leveraging Google Gemini’s generative capabilities, the app transforms simple natural language instructions into executable Python plotting code—enabling fast, customizable, and accurate visualizations without needing to write code manually.
-
----
-
-## Key Features
-
-- **Multi-format File Upload & Parsing:** Seamlessly upload `.csv`, `.xls`, `.xlsx`, and structured `.txt` files. The system intelligently reads and extracts structured data, ready for analysis.
-
-- **Automatic Data Structuring:** Text files with data are parsed to extract meaningful columns, enabling flexible data inputs beyond traditional tabular formats.
-
-- **Interactive Data Preview:** View a snapshot of your uploaded data directly through the API to verify contents before generating visualizations.
-
-- **Natural Language Plotting Queries:** Describe the type of chart or analysis you want in plain English (e.g., “Plot the monthly sales trend”) and get automated Python plotting code generated.
-
-- **AI-Powered Python Code Generation:** Uses Google Gemini’s generative AI model to convert user queries into clean, ready-to-execute Python code for matplotlib/seaborn.
-
-- **Dynamic Plot Rendering:** Execute the AI-generated code safely within the app and return the resulting visualization image for immediate user feedback.
-
-- **Extensible & Modular:** Designed for easy addition of new data types, visualization styles, or AI models to accommodate evolving needs.
-
-- **Robust Error Handling:** Captures and returns detailed error tracebacks if AI-generated code fails, helping users troubleshoot quickly.
-
-- **Web-based UI with FastAPI & Jinja2:** A simple and clean front-end to upload files, enter queries, and view results, enhancing accessibility and usability.
+Data Insight Generator bridges the gap between complex coding and data storytelling. Traditionally, generating insightful visualizations requires manual scripting and data wrangling skills. Our app automates this by combining robust data processing with AI-driven code generation. Upload your CSV, Excel, or structured TXT files, and get clean, analyzable datasets instantly. Then, simply describe the visualization you want in plain English — and watch the app convert it into Python plotting code with matplotlib or seaborn, rendering beautiful graphs in seconds.
 
 ---
 
-## Additional Possible Features (for future releases)
+## ✨ Key Features
 
-- **Support for More File Formats:** PDF tables, JSON, XML, and database connections.
+- **Multi-format File Upload & Parsing** — Supports `.csv`, `.xls`, `.xlsx`, and structured `.txt` files with automatic data extraction.
 
-- **Advanced NLP Interpretation:** Better understanding of complex multi-step analysis requests.
+- **Smart Data Structuring** — Parses raw text data into clean, usable tables without hassle.
 
-- **Interactive Plot Customization:** Allow users to tweak plot styles, colors, and parameters dynamically.
+- **Interactive Data Preview** — Quickly view a snapshot of your dataset to verify contents.
 
-- **User Authentication & Profiles:** Save past uploads and plots for registered users.
+- **Natural Language Plot Queries** — Just type what you want to visualize (e.g., “Show monthly sales trends”) and get instant Python code.
 
-- **Export Options:** Download generated plots in various formats (PNG, SVG, PDF).
+- **AI-Powered Plot Code Generation** — Utilizes Google Gemini’s generative AI to create clean, ready-to-run matplotlib/seaborn scripts.
 
-- **Integration with Dashboards:** Embed generated plots into interactive dashboards for reporting.
+- **Dynamic Plot Rendering** — Executes the AI-generated code safely and returns the visualization image for immediate feedback.
 
-- **Cloud Storage Support:** Save uploaded files and results securely on cloud platforms.
+- **Modular & Extensible Design** — Easily expand with support for new data types, visualization libraries, or AI models.
+
+- **Detailed Error Reporting** — If something goes wrong, receive full error tracebacks to debug quickly.
+
+- **Clean Web UI** — FastAPI and Jinja2 templates provide an intuitive interface to upload data, submit queries, and view results seamlessly.
 
 ---
 
-## Why Use Data Insight Generator?
+## 🔮 Future Enhancements
 
-- **No Coding Required:** Generate complex plots using simple English instructions.
+- Support for additional formats like PDF tables, JSON, XML, and direct database connections.
 
-- **Faster Data Exploration:** Quickly visualize and understand datasets without manual scripting.
+- Advanced NLP to interpret complex multi-step queries.
 
-- **Leverages State-of-the-Art AI:** Google Gemini ensures the plotting code is relevant and efficient.
+- Interactive plot customization (colors, styles, labels) through UI controls.
 
-- **Flexible & Scalable:** Suitable for data analysts, researchers, students, and business users.
+- User accounts and profiles for saving datasets and visualizations.
 
-## Installation & Setup
+- Export options including PNG, SVG, PDF downloads.
 
-1. Clone the repository:
+- Dashboard integration for embedding plots in reports.
+
+- Cloud storage for secure file and result management.
+
+---
+
+## 🎯 Why Choose Data Insight Generator?
+
+- **No Coding Required:** Generate insightful charts with plain English commands.
+
+- **Accelerated Data Exploration:** Visualize trends and patterns faster than ever.
+
+- **Powered by State-of-the-Art AI:** Leverages Google Gemini for smart, relevant plot code.
+
+- **Flexible & Scalable:** Ideal for analysts, researchers, students, and business professionals alike.
+
+---
+
+## ⚙️ Installation & Setup
+
+1. Clone this repository:
 
    ```bash
    git clone https://github.com/your-username/data-insight-generator.git
