@@ -21,9 +21,8 @@
 ✅ Automatic data cleaning and preprocessing  
 ✅ Descriptive statistics and data profiling  
 ✅ Correlation matrix and heatmaps  
-✅ Interactive visualizations with zero setup  
-✅ Exports insights as HTML/PDF reports  
-✅ Supports CSV, Excel, JSON, and more  
+✅ Interactive visualizations with zero setup    
+✅ Supports CSV, Excel only  
 ✅ Lightweight, fast, and beginner-friendly
 
 ---
