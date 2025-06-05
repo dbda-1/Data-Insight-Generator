@@ -74,7 +74,7 @@ class Query(BaseModel):
     user_query: str
 
 # === 6. Gemini Code Generation ===
-GEMINI_API_KEY = "AIzaSyBYuVCOkAIB6pIPFPLhlltE75zHHQK_5xY"  # Replace with your actual API key
+GEMINI_API_KEY = "AIzaSyBYuVCOkAIB6pIPFPLhlltE75zHHQK_5xY"  # Replace with your actual API
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel("gemini-2.5-flash-preview-04-17")
 
