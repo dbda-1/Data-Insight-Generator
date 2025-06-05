@@ -1,7 +1,9 @@
 # Data Insight Generator
 
 **Data Insight Generator** is a powerful and user-friendly web application designed to simplify data analysis and visualization. Built with FastAPI and powered by Google Gemini’s cutting-edge generative AI, this tool empowers users—from beginners to experts—to effortlessly upload structured data files, extract meaningful insights, and create dynamic visualizations using natural language commands.
-# Deployment - https://data-insight-generator.onrender.com
+
+# Deployment - **https://data-insight-generator.onrender.com
+
 ---
 
 ## 🚀 Description
