@@ -4,13 +4,13 @@
 
 ---
 
-# Deployment - https://data-insight-generator.onrender.com
-
----
-
 ## 🚀 Description
 
 Data Insight Generator bridges the gap between complex coding and data storytelling. Traditionally, generating insightful visualizations requires manual scripting and data wrangling skills. Our app automates this by combining robust data processing with AI-driven code generation. Upload your CSV, Excel, or structured TXT files, and get clean, analyzable datasets instantly. Then, simply describe the visualization you want in plain English — and watch the app convert it into Python plotting code with matplotlib or seaborn, rendering beautiful graphs in seconds.
+
+---
+
+Deployment - https://data-insight-generator.onrender.com
 
 ---
 
