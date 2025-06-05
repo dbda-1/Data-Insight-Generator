@@ -69,7 +69,7 @@ class Query(BaseModel):
 
 # === 5. Gemini LLM Code Generation ===
 import google.generativeai as genai
-GEMINI_API_KEY = "AIzaSyBYuVCOkAIB6pIPFPLhlltE75zHHQK_5xY"
+GEMINI_API_KEY = "GEMINI_API_KEY"
 genai.configure(api_key=GEMINI_API_KEY)
 model = genai.GenerativeModel("gemini-2.5-flash-preview-04-17")
 
