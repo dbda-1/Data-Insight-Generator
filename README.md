@@ -62,8 +62,6 @@ Data Insight Generator bridges the gap between complex coding and data storytell
 
 ---
 
-- **Live Demo 👉 data-insight-generator.onrender.com
-
 ## ⚙️ Installation & Setup
 
 1. Clone this repository:
